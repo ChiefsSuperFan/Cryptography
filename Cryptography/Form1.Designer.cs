@@ -28,13 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.btnGenerateKey = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SuspendLayout();
+            // 
+            // btnGenerateKey
+            // 
+            this.btnGenerateKey.Location = new System.Drawing.Point(62, 65);
+            this.btnGenerateKey.Name = "btnGenerateKey";
+            this.btnGenerateKey.Size = new System.Drawing.Size(312, 48);
+            this.btnGenerateKey.TabIndex = 0;
+            this.btnGenerateKey.Text = "Generate Key";
+            this.btnGenerateKey.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(644, 56);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(531, 38);
+            this.textBox1.TabIndex = 1;
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1565, 808);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnGenerateKey);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnGenerateKey;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
