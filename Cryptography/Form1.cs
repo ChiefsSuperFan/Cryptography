@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CryptoClases;
 
 namespace Cryptography
 {
@@ -15,6 +16,47 @@ namespace Cryptography
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void btnGenerateKey_Click(object sender, EventArgs e)
+        {
+            
+
+            try
+            {
+                int keySize = Convert.ToInt32(txtKeySize.Text);
+                RandomKeyGenerator keyGen = new RandomKeyGenerator(keySize);
+
+                if(keyGen.ValidKeyLength)
+                {
+                    string pk = keyGen.RandomKey;
+                    txtRandomKey.Text = pk;
+                }else
+                {
+                    MessageBox.Show("Key length too short!");
+                }
+
+
+            }
+            catch
+            {
+
+            }
+
+
+        }
+
+        private void btnSymmEncrypt_Click(object sender, EventArgs e)
+        {
+            if(txtRandomKey.Text.Length>9)
+            {
+                frmSymm symm = new frmSymm();
+                symm.LoadKey(txtRandomKey.Text);
+                symm.ShowDialog();
+            }else
+            {
+                MessageBox.Show("Please enter or generate a strong random key!");
+            }
         }
     }
 }
