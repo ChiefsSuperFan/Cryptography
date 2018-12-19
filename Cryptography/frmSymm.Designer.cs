@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.txtEncryptionKey = new System.Windows.Forms.TextBox();
+            this.btnEncrypt = new System.Windows.Forms.Button();
+            this.txtPlain = new System.Windows.Forms.TextBox();
+            this.txtEncrypted = new System.Windows.Forms.TextBox();
+            this.btnDecrypt = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtEncryptionKey
@@ -42,11 +46,51 @@
             this.txtEncryptionKey.Size = new System.Drawing.Size(707, 38);
             this.txtEncryptionKey.TabIndex = 0;
             // 
+            // btnEncrypt
+            // 
+            this.btnEncrypt.Location = new System.Drawing.Point(110, 240);
+            this.btnEncrypt.Name = "btnEncrypt";
+            this.btnEncrypt.Size = new System.Drawing.Size(239, 69);
+            this.btnEncrypt.TabIndex = 1;
+            this.btnEncrypt.Text = "Encrypt";
+            this.btnEncrypt.UseVisualStyleBackColor = true;
+            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
+            // 
+            // txtPlain
+            // 
+            this.txtPlain.Location = new System.Drawing.Point(44, 331);
+            this.txtPlain.Multiline = true;
+            this.txtPlain.Name = "txtPlain";
+            this.txtPlain.Size = new System.Drawing.Size(720, 475);
+            this.txtPlain.TabIndex = 2;
+            // 
+            // txtEncrypted
+            // 
+            this.txtEncrypted.Location = new System.Drawing.Point(810, 331);
+            this.txtEncrypted.Multiline = true;
+            this.txtEncrypted.Name = "txtEncrypted";
+            this.txtEncrypted.Size = new System.Drawing.Size(784, 475);
+            this.txtEncrypted.TabIndex = 3;
+            // 
+            // btnDecrypt
+            // 
+            this.btnDecrypt.Location = new System.Drawing.Point(889, 259);
+            this.btnDecrypt.Name = "btnDecrypt";
+            this.btnDecrypt.Size = new System.Drawing.Size(269, 50);
+            this.btnDecrypt.TabIndex = 4;
+            this.btnDecrypt.Text = "Decrypt";
+            this.btnDecrypt.UseVisualStyleBackColor = true;
+            this.btnDecrypt.Click += new System.EventHandler(this.btnDecrypt_Click);
+            // 
             // frmSymm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 611);
+            this.ClientSize = new System.Drawing.Size(1696, 983);
+            this.Controls.Add(this.btnDecrypt);
+            this.Controls.Add(this.txtEncrypted);
+            this.Controls.Add(this.txtPlain);
+            this.Controls.Add(this.btnEncrypt);
             this.Controls.Add(this.txtEncryptionKey);
             this.Name = "frmSymm";
             this.Text = "frmSymm";
@@ -59,5 +103,9 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtEncryptionKey;
+        private System.Windows.Forms.Button btnEncrypt;
+        private System.Windows.Forms.TextBox txtPlain;
+        private System.Windows.Forms.TextBox txtEncrypted;
+        private System.Windows.Forms.Button btnDecrypt;
     }
 }

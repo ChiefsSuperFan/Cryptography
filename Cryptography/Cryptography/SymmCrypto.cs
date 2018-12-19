@@ -93,7 +93,7 @@ namespace CryptoClases
         }
 
        
-        public static string AES_File_Encrypt(string SourceFileURL, string OutFileURL, string RandomKey)
+        public static string EncryptFile(string SourceFileURL, string OutFileURL, string RandomKey)
 
         {
 
@@ -166,67 +166,63 @@ namespace CryptoClases
             }
         }
 
-        public static string AES_File_Decrypt(string SourceFileURL, string OurFileURL, string RandomKey)
+        public static bool DecryptFile(string SourceFileURL, string OurFileURL, string RandomKey)
         {
-            //todo:
-            // - create error message on wrong password
-            // - on cancel: close and delete file
-            // - on wrong password: close and delete file!
-            // - create a better filen name
-            // - could be check md5 hash on the files but it make this slow
-
-
-
+           
             byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(RandomKey);
             byte[] salt = new byte[32];
-            //string decryptedFile = inputFile + ".decrypt";
+        
             string decryptedFile = OurFileURL;
-
-
-            FileStream fsCrypt = new FileStream(SourceFileURL, FileMode.Open);
-            fsCrypt.Read(salt, 0, salt.Length);
-
-            RijndaelManaged AES = new RijndaelManaged();
-            AES.KeySize = 256;
-            AES.BlockSize = 128;
-            var key = new Rfc2898DeriveBytes(passwordBytes, salt, 50000);
-            AES.Key = key.GetBytes(AES.KeySize / 8);
-            AES.IV = key.GetBytes(AES.BlockSize / 8);
-            AES.Padding = PaddingMode.PKCS7;
-            AES.Mode = CipherMode.CFB;
-
-            using (CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateDecryptor(), CryptoStreamMode.Read))
+            try
             {
-                //FileStream fsOut = new FileStream(decryptedFile, FileMode.Create);
-
-                using (FileStream fsOut = new FileStream(decryptedFile, FileMode.Create))
+                using (FileStream fsCrypt = new FileStream(SourceFileURL, FileMode.Open))
                 {
-
-                    int read;
-                    byte[] buffer = new byte[1048576];
-
-                    try
+                    fsCrypt.Read(salt, 0, salt.Length);
+                    using (RijndaelManaged AES = new RijndaelManaged())
                     {
-                        while ((read = cs.Read(buffer, 0, buffer.Length)) > 0)
+                        AES.KeySize = 256;
+                        AES.BlockSize = 128;
+                        var key = new Rfc2898DeriveBytes(passwordBytes, salt, 50000);
+                        AES.Key = key.GetBytes(AES.KeySize / 8);
+                        AES.IV = key.GetBytes(AES.BlockSize / 8);
+                        AES.Padding = PaddingMode.PKCS7;
+                        AES.Mode = CipherMode.CFB;
+                        using (CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateDecryptor(), CryptoStreamMode.Read))
                         {
-                            //Application.DoEvents();
-                            fsOut.Write(buffer, 0, read);
+
+                            using (FileStream fsOut = new FileStream(decryptedFile, FileMode.Create))
+                            {
+
+                                int read;
+                                byte[] buffer = new byte[1048576];
+                                while ((read = cs.Read(buffer, 0, buffer.Length)) > 0)
+                                {
+
+                                    fsOut.Write(buffer, 0, read);
+                                }
+
+                                fsOut.Close();
+                                cs.Close();
+
+                                return true;
+
+
+                            }
+
                         }
 
-                        fsOut.Close();
-                        cs.Close();
+                    }
 
-                        return decryptedFile;
-                    }
-                    catch
-                    {
-                        //Debug.WriteLine("Error: " + ex.Message);
-                        return "";
-                    }
 
                 }
 
+
             }
+            catch
+            {
+                return false;
+            }
+    
         }
 
 

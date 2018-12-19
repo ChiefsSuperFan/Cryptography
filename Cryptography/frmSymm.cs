@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CryptoClases;
 
 namespace Cryptography
 {
@@ -26,6 +27,45 @@ namespace Cryptography
         private void frmSymm_Load(object sender, EventArgs e)
         {
             txtEncryptionKey.Text = _encryptionKey;
+
+        }
+
+        private void btnEncrypt_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string plainText = txtPlain.Text;
+                if(plainText.Length>0)
+                {
+                    string encryptedText = SymmCrypto.Encrypt(plainText, txtEncryptionKey.Text);
+                    txtEncrypted.Text = encryptedText;
+                   
+                }
+
+            }
+            catch
+            {
+
+            }
+
+
+         
+
+           
+        }
+
+        private void btnDecrypt_Click(object sender, EventArgs e)
+        {
+            txtPlain.Text = "";
+            string encryptedText = txtEncrypted.Text;
+            string privateKey=txtEncryptionKey.Text;
+
+            string plain = SymmCrypto.Decrypt(encryptedText, txtEncryptionKey.Text);
+
+            txtPlain.Text = plain;
+
+
+
 
         }
     }

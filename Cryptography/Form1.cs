@@ -31,7 +31,9 @@ namespace Cryptography
                 {
                     string pk = keyGen.RandomKey;
                     txtRandomKey.Text = pk;
-                }else
+                    var privateKey = Encoding.UTF8.GetBytes(pk);
+                }
+                else
                 {
                     MessageBox.Show("Key length too short!");
                 }
