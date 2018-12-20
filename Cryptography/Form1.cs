@@ -75,5 +75,12 @@ namespace Cryptography
             hashComparison.Show();
 
         }
+
+        private void btnMerkle_Click(object sender, EventArgs e)
+        {
+            frmMerkleRoot merkleRoot = new frmMerkleRoot();
+            merkleRoot.Show();
+
+        }
     }
 }

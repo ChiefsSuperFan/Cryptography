@@ -30,6 +30,7 @@
         {
             this.txtHashValues = new System.Windows.Forms.TextBox();
             this.btnCalculate = new System.Windows.Forms.Button();
+            this.txtMerkleRoot = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtHashValues
@@ -50,15 +51,26 @@
             this.btnCalculate.UseVisualStyleBackColor = true;
             this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
+            // txtMerkleRoot
+            // 
+            this.txtMerkleRoot.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.txtMerkleRoot.ForeColor = System.Drawing.Color.Black;
+            this.txtMerkleRoot.Location = new System.Drawing.Point(84, 847);
+            this.txtMerkleRoot.Name = "txtMerkleRoot";
+            this.txtMerkleRoot.Size = new System.Drawing.Size(1389, 38);
+            this.txtMerkleRoot.TabIndex = 3;
+            // 
             // frmMerkleRoot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1738, 972);
+            this.Controls.Add(this.txtMerkleRoot);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.txtHashValues);
             this.Name = "frmMerkleRoot";
             this.Text = "frmMerkleRoot";
+            this.Load += new System.EventHandler(this.frmMerkleRoot_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -68,5 +80,6 @@
 
         private System.Windows.Forms.TextBox txtHashValues;
         private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.TextBox txtMerkleRoot;
     }
 }

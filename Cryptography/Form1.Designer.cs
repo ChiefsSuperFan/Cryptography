@@ -35,6 +35,7 @@
             this.btnSymmEncrypt = new System.Windows.Forms.Button();
             this.btnAsymm = new System.Windows.Forms.Button();
             this.btnHashCompare = new System.Windows.Forms.Button();
+            this.btnMerkle = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGenerateKey
@@ -101,11 +102,22 @@
             this.btnHashCompare.UseVisualStyleBackColor = true;
             this.btnHashCompare.Click += new System.EventHandler(this.btnHashCompare_Click);
             // 
+            // btnMerkle
+            // 
+            this.btnMerkle.Location = new System.Drawing.Point(691, 484);
+            this.btnMerkle.Name = "btnMerkle";
+            this.btnMerkle.Size = new System.Drawing.Size(358, 70);
+            this.btnMerkle.TabIndex = 7;
+            this.btnMerkle.Text = "Merkle Roots";
+            this.btnMerkle.UseVisualStyleBackColor = true;
+            this.btnMerkle.Click += new System.EventHandler(this.btnMerkle_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1565, 808);
+            this.Controls.Add(this.btnMerkle);
             this.Controls.Add(this.btnHashCompare);
             this.Controls.Add(this.btnAsymm);
             this.Controls.Add(this.btnSymmEncrypt);
@@ -129,6 +141,7 @@
         private System.Windows.Forms.Button btnSymmEncrypt;
         private System.Windows.Forms.Button btnAsymm;
         private System.Windows.Forms.Button btnHashCompare;
+        private System.Windows.Forms.Button btnMerkle;
     }
 }
 

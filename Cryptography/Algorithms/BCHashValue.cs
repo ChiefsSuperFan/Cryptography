@@ -132,6 +132,7 @@ namespace Cryptography.Algorithms
                         h2 = hValue;
                         BCHashValue addedHashes = h1.AddHash(h2);
                         hashedValues.Add(addedHashes);
+                        index = 0;
 
                         //we have a pair, so add them
 
@@ -139,7 +140,7 @@ namespace Cryptography.Algorithms
                 }
 
                 //this means we had an odd number of node hashes
-                if (index == 0)
+                if (index == 1)
                 {
                     //so add the orphaned hash object
                     hashedValues.Add(h1);
