@@ -12,18 +12,23 @@ namespace Cryptography.Algorithms
 
         public byte[] HashValue { get; private set; }
 
+        readonly private HashAlgorithm _hashAlgorithmType;
+
 
         public BCHashValue()
         {
 
         }
-        public BCHashValue(string InputHash)
+        public BCHashValue(string InputHash, HashAlgorithm algorithm=HashAlgorithm.Sha256)
         {
 
             HashValue = CryptoHash.ConvertToBytes(InputHash);
 
+            _hashAlgorithmType = algorithm;
+
+
         }
-        public BCHashValue(byte[] InputHash)
+        public BCHashValue(byte[] InputHash, HashAlgorithm algorithm = HashAlgorithm.Sha256)
         {
             //source is the data to hash
 
@@ -33,6 +38,8 @@ namespace Cryptography.Algorithms
 
         public BCHashValue AddHash(BCHashValue HashObject)
         {
+            BCHashValue error = new BCHashValue();
+            
 
             try
             {
@@ -43,20 +50,36 @@ namespace Cryptography.Algorithms
 
                 byte[] hashConcat = CryptoHash.GetByteArray256Hash(concactH);
 
-                BCHashValue addHash = new BCHashValue(hashConcat);
-                return addHash;
+                switch(_hashAlgorithmType)
+                {
+                    case HashAlgorithm.Sha256:
+                        BCHashValue addHash256 = new BCHashValue(hashConcat);
+                        return addHash256;
+                    case HashAlgorithm.Sha512:
+                        BCHashValue addHash512 = new BCHashValue(hashConcat);
+                        return addHash512;
+                    default:
+                        BCHashValue err = new BCHashValue();
+                        return error;
 
+                }
 
             }
             catch
             {
-                BCHashValue error = new BCHashValue();
                 return error;
+
 
             }
 
 
         }
+    }
+
+    public enum HashAlgorithm
+    {
+        Sha256,
+        Sha512
     }
 
     public class MerkleRoot

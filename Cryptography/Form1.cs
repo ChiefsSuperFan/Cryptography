@@ -68,5 +68,12 @@ namespace Cryptography
 
             asymm.Show();
         }
+
+        private void btnHashCompare_Click(object sender, EventArgs e)
+        {
+            frmHashComparison hashComparison = new frmHashComparison();
+            hashComparison.Show();
+
+        }
     }
 }

@@ -63,6 +63,18 @@
     <Compile Include="frmAsymm.Designer.cs">
       <DependentUpon>frmAsymm.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmHashComparison.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHashComparison.Designer.cs">
+      <DependentUpon>frmHashComparison.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMerkleRoot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMerkleRoot.Designer.cs">
+      <DependentUpon>frmMerkleRoot.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSymm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +88,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAsymm.resx">
       <DependentUpon>frmAsymm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHashComparison.resx">
+      <DependentUpon>frmHashComparison.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMerkleRoot.resx">
+      <DependentUpon>frmMerkleRoot.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSymm.resx">
       <DependentUpon>frmSymm.cs</DependentUpon>

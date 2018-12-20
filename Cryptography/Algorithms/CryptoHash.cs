@@ -20,7 +20,7 @@ namespace Cryptography.Algorithms
             return checksum;
 
         }
-        public static string GetString256Hash(string StringValue)
+        public static string GetSHA256StringHash(string StringValue)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Cryptography.Algorithms
 
         }
 
-        public static string GetString512Hash(string StringValue)
+        public static string GetSHA512StringHash(string StringValue)
         {
             try
             {
@@ -54,10 +54,7 @@ namespace Cryptography.Algorithms
                 {
                     return "";
                 }
-
-                byte[] stringBytes = Encoding.ASCII.GetBytes(stringValue);
-
-          
+                byte[] stringBytes = Encoding.ASCII.GetBytes(stringValue);          
                 SHA512Managed sha512 = new SHA512Managed();
 
                 byte[] checksum = sha512.ComputeHash(stringBytes);
@@ -71,9 +68,28 @@ namespace Cryptography.Algorithms
 
         }
 
+        public static string GetSha512FileHash(string FileURL)
+        {            try
+            {
+                bool exists = File.Exists(FileURL);
+                {
+                    if (exists)
+                        using (FileStream stream = File.OpenRead(FileURL))
+                        {
+                            SHA512Managed sha512 = new SHA512Managed();
+                            byte[] checksum = sha512.ComputeHash(stream);
+                            return BitConverter.ToString(checksum).Replace("-", String.Empty);
+                        }
+                }
+                return "";
+            }
+            catch
+            {
+                return "";
+            }
+        }
         public static string GetSha256FileHash(string FileURL)
         {
-
             try
             {
                 bool exists = File.Exists(FileURL);
@@ -83,19 +99,13 @@ namespace Cryptography.Algorithms
                         {
                             SHA256Managed sha = new SHA256Managed();
                             byte[] checksum = sha.ComputeHash(stream);
-
-
-
-
                             return BitConverter.ToString(checksum).Replace("-", String.Empty);
                         }
-
                 }
                 return "";
             }
             catch
             {
-
                 return "";
             }
         }

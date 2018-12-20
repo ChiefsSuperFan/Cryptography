@@ -34,6 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSymmEncrypt = new System.Windows.Forms.Button();
             this.btnAsymm = new System.Windows.Forms.Button();
+            this.btnHashCompare = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGenerateKey
@@ -90,11 +91,22 @@
             this.btnAsymm.UseVisualStyleBackColor = true;
             this.btnAsymm.Click += new System.EventHandler(this.btnAsymm_Click);
             // 
+            // btnHashCompare
+            // 
+            this.btnHashCompare.Location = new System.Drawing.Point(691, 341);
+            this.btnHashCompare.Name = "btnHashCompare";
+            this.btnHashCompare.Size = new System.Drawing.Size(311, 63);
+            this.btnHashCompare.TabIndex = 6;
+            this.btnHashCompare.Text = "Hash Compare";
+            this.btnHashCompare.UseVisualStyleBackColor = true;
+            this.btnHashCompare.Click += new System.EventHandler(this.btnHashCompare_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1565, 808);
+            this.Controls.Add(this.btnHashCompare);
             this.Controls.Add(this.btnAsymm);
             this.Controls.Add(this.btnSymmEncrypt);
             this.Controls.Add(this.label1);
@@ -116,6 +128,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSymmEncrypt;
         private System.Windows.Forms.Button btnAsymm;
+        private System.Windows.Forms.Button btnHashCompare;
     }
 }
 
