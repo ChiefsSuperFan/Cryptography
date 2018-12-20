@@ -61,6 +61,7 @@ namespace Cryptography
 
             string merkleRoot = MerkleRoot.GetMerkleRoot(hashValues);
             txtMerkleRoot.Text = merkleRoot;
+            txtMLength.Text = merkleRoot.Length.ToString();
 
 
         }

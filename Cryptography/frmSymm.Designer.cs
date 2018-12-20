@@ -33,6 +33,8 @@
             this.txtPlain = new System.Windows.Forms.TextBox();
             this.txtEncrypted = new System.Windows.Forms.TextBox();
             this.btnDecrypt = new System.Windows.Forms.Button();
+            this.txtEncryptedLength = new System.Windows.Forms.TextBox();
+            this.txtPlainLength = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtEncryptionKey
@@ -82,11 +84,27 @@
             this.btnDecrypt.UseVisualStyleBackColor = true;
             this.btnDecrypt.Click += new System.EventHandler(this.btnDecrypt_Click);
             // 
+            // txtEncryptedLength
+            // 
+            this.txtEncryptedLength.Location = new System.Drawing.Point(1392, 834);
+            this.txtEncryptedLength.Name = "txtEncryptedLength";
+            this.txtEncryptedLength.Size = new System.Drawing.Size(100, 38);
+            this.txtEncryptedLength.TabIndex = 5;
+            // 
+            // txtPlainLength
+            // 
+            this.txtPlainLength.Location = new System.Drawing.Point(631, 834);
+            this.txtPlainLength.Name = "txtPlainLength";
+            this.txtPlainLength.Size = new System.Drawing.Size(100, 38);
+            this.txtPlainLength.TabIndex = 6;
+            // 
             // frmSymm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1696, 983);
+            this.Controls.Add(this.txtPlainLength);
+            this.Controls.Add(this.txtEncryptedLength);
             this.Controls.Add(this.btnDecrypt);
             this.Controls.Add(this.txtEncrypted);
             this.Controls.Add(this.txtPlain);
@@ -107,5 +125,7 @@
         private System.Windows.Forms.TextBox txtPlain;
         private System.Windows.Forms.TextBox txtEncrypted;
         private System.Windows.Forms.Button btnDecrypt;
+        private System.Windows.Forms.TextBox txtEncryptedLength;
+        private System.Windows.Forms.TextBox txtPlainLength;
     }
 }

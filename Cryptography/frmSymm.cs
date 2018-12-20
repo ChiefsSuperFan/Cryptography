@@ -39,6 +39,9 @@ namespace Cryptography
                 {
                     string encryptedText = SymmCrypto.Encrypt(plainText, txtEncryptionKey.Text);
                     txtEncrypted.Text = encryptedText;
+                    txtPlainLength.Text = plainText.Length.ToString();
+                    txtEncryptedLength.Text = encryptedText.Length.ToString();
+
                    
                 }
 
