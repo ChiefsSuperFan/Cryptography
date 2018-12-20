@@ -46,8 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CryptoClasses\AsymmCrypto.cs" />
-    <Compile Include="CryptoClasses\SymmCrypto.cs" />
+    <Compile Include="Algorithms\AsymmetricEncryption.cs" />
+    <Compile Include="Algorithms\BCHashValue.cs" />
+    <Compile Include="Algorithms\RandomKeyGenerator.cs" />
+    <Compile Include="Algorithms\SymmCrypto.cs" />
+    <Compile Include="Algorithms\CryptoHash.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,8 +99,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

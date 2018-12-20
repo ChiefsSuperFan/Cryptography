@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
-namespace Cryptography.CryptoClasses
+namespace Cryptography.Algorithms
 {
     public static class AsymmetricEncryption
     {
@@ -42,7 +42,7 @@ namespace Cryptography.CryptoClasses
 
         }
 
-        private static byte[] Encrypt(byte[] data,  string publicKeyXml)
+        private static byte[] Encrypt(byte[] data, string publicKeyXml)
         {
 
             using (var provider = new RSACryptoServiceProvider(KEY_SIZE))
@@ -57,7 +57,7 @@ namespace Cryptography.CryptoClasses
 
             try
             {
-               if(EncryptedText.Length>0 && PublicAndPrivateKeyXml.Length>0)
+                if (EncryptedText.Length > 0 && PublicAndPrivateKeyXml.Length > 0)
                 {
                     var decrypted = Decrypt(Convert.FromBase64String(EncryptedText), PublicAndPrivateKeyXml);
                     return Encoding.UTF8.GetString(decrypted);
@@ -73,7 +73,7 @@ namespace Cryptography.CryptoClasses
 
         private static byte[] Decrypt(byte[] data, string publicAndPrivateKeyXml)
         {
-            
+
             using (var provider = new RSACryptoServiceProvider(KEY_SIZE))
             {
                 provider.FromXmlString(publicAndPrivateKeyXml);

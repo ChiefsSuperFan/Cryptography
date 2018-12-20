@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CryptoClasses;
+using Cryptography.Algorithms;
 
 namespace Cryptography
 {
@@ -28,7 +28,7 @@ namespace Cryptography
             string privateKey = "";
             string publicKey = "";
 
-            CryptoClasses.AsymmetricEncryption.GenerateKeys(out publicKey, out privateKey);
+          AsymmetricEncryption.GenerateKeys(out publicKey, out privateKey);
 
             txtPrivate.Text = privateKey;
             txtPublic.Text = publicKey;
@@ -51,8 +51,8 @@ namespace Cryptography
 
                 for(int i=0;i<100;i++)
                 {
-                    string encrypted = CryptoClasses.AsymmetricEncryption.EncryptText(txtPassword.Text, txtPublic.Text);
-                    string decrypted = CryptoClasses.AsymmetricEncryption.DecryptText(encrypted, txtPrivate.Text);
+                    string encrypted = AsymmetricEncryption.EncryptText(txtPassword.Text, txtPublic.Text);
+                    string decrypted = AsymmetricEncryption.DecryptText(encrypted, txtPrivate.Text);
 
                 }
 
