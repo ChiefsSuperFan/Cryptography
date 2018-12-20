@@ -12,19 +12,21 @@ namespace Cryptography.Algorithms
 
         public byte[] HashValue { get; private set; }
 
-        readonly private HashAlgorithm _hashAlgorithmType;
+        //readonly private HashAlgorithm _hashAlgorithmType;
+
+        public HashAlgorithm HashAlgorithmType { get; private set; }
 
 
-        public BCHashValue()
+        public BCHashValue(HashAlgorithm algorithm = HashAlgorithm.Sha256)
         {
-
+            HashAlgorithmType = algorithm;
         }
         public BCHashValue(string InputHash, HashAlgorithm algorithm=HashAlgorithm.Sha256)
         {
 
             HashValue = CryptoHash.ConvertToBytes(InputHash);
 
-            _hashAlgorithmType = algorithm;
+            HashAlgorithmType = algorithm;
 
 
         }
@@ -33,6 +35,7 @@ namespace Cryptography.Algorithms
             //source is the data to hash
 
             HashValue = InputHash;
+            HashAlgorithmType = algorithm;
         }
 
 
@@ -43,20 +46,17 @@ namespace Cryptography.Algorithms
 
             try
             {
-                byte[] concactH = this.HashValue.Concat(HashObject.HashValue).ToArray();
+                byte[] concactH = this.HashValue.Concat(HashObject.HashValue).ToArray();                
 
-
-
-
-                byte[] hashConcat = CryptoHash.GetByteArray256Hash(concactH);
-
-                switch(_hashAlgorithmType)
+                switch(HashAlgorithmType)
                 {
                     case HashAlgorithm.Sha256:
-                        BCHashValue addHash256 = new BCHashValue(hashConcat);
+                        byte[] hashConcat256 = CryptoHash.GetSha256ByteArrayHash(concactH);
+                        BCHashValue addHash256 = new BCHashValue(hashConcat256, HashAlgorithmType);
                         return addHash256;
                     case HashAlgorithm.Sha512:
-                        BCHashValue addHash512 = new BCHashValue(hashConcat);
+                        byte[] hashConcat512 = CryptoHash.GetSha512ByteArrayHash(concactH);
+                        BCHashValue addHash512 = new BCHashValue(hashConcat512, HashAlgorithmType);
                         return addHash512;
                     default:
                         BCHashValue err = new BCHashValue();
@@ -88,19 +88,28 @@ namespace Cryptography.Algorithms
         {
             try
             {
-                List<BCHashValue> getHashes = ProcessHashObjectList(MerkleLeaves);
-                if (getHashes.Count() == 1)
+                
+                if (MerkleLeaves.Count() == 1)
                 {
-                    byte[] bmerkelRoot = getHashes[0].HashValue;
+                    byte[] bmerkelRoot = MerkleLeaves[0].HashValue;
                     string merkleRoot = BitConverter.ToString(bmerkelRoot).Replace("-", String.Empty);
 
                     return merkleRoot;
                 }
-                else
+
+                if(MerkleLeaves.Count()>1)
                 {
-                    //this should never happen!
-                    return "";
+                    HashAlgorithm algorithm = MerkleLeaves[0].HashAlgorithmType;
+
+                    List<BCHashValue> getHashes = ProcessHashObjectList(MerkleLeaves, algorithm);
+                    byte[] bmerkelRoot = getHashes[0].HashValue;
+                    string merkleRoot = BitConverter.ToString(bmerkelRoot).Replace("-", String.Empty);
+
+                    return merkleRoot;
+
                 }
+
+                return "";
 
             }
             catch
@@ -109,14 +118,14 @@ namespace Cryptography.Algorithms
             }
         }
 
-        private static List<BCHashValue> ProcessHashObjectList(List<BCHashValue> HashList)
+        private static List<BCHashValue> ProcessHashObjectList(List<BCHashValue> HashList, HashAlgorithm algorithm)
         {
             try
             {
                 List<BCHashValue> hashedValues = new List<BCHashValue>();
                 int index = 0;
-                BCHashValue h1 = new BCHashValue();
-                BCHashValue h2 = new BCHashValue();
+                BCHashValue h1 = new BCHashValue(algorithm);
+                BCHashValue h2 = new BCHashValue(algorithm);
                 int listCount = HashList.Count();
 
                 foreach (BCHashValue hValue in HashList)
@@ -154,7 +163,7 @@ namespace Cryptography.Algorithms
                 else
                 {
                     //recurse 
-                    List<BCHashValue> getNodes = ProcessHashObjectList(hashedValues);
+                    List<BCHashValue> getNodes = ProcessHashObjectList(hashedValues, algorithm);
                     return getNodes;
 
                 }
