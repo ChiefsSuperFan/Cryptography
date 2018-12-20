@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CryptoClases;
+using CryptoClasses;
 
 namespace Cryptography
 {
@@ -59,6 +59,14 @@ namespace Cryptography
             {
                 MessageBox.Show("Please enter or generate a strong random key!");
             }
+        }
+
+        private void btnAsymm_Click(object sender, EventArgs e)
+        {
+            frmAsymm asymm = new frmAsymm();
+            asymm.LoadPassword(txtRandomKey.Text);
+
+            asymm.Show();
         }
     }
 }

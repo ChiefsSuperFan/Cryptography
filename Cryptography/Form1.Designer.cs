@@ -33,6 +33,7 @@
             this.txtKeySize = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSymmEncrypt = new System.Windows.Forms.Button();
+            this.btnAsymm = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGenerateKey
@@ -79,11 +80,22 @@
             this.btnSymmEncrypt.UseVisualStyleBackColor = true;
             this.btnSymmEncrypt.Click += new System.EventHandler(this.btnSymmEncrypt_Click);
             // 
+            // btnAsymm
+            // 
+            this.btnAsymm.Location = new System.Drawing.Point(87, 484);
+            this.btnAsymm.Name = "btnAsymm";
+            this.btnAsymm.Size = new System.Drawing.Size(349, 58);
+            this.btnAsymm.TabIndex = 5;
+            this.btnAsymm.Text = "Asymmetric Encryption";
+            this.btnAsymm.UseVisualStyleBackColor = true;
+            this.btnAsymm.Click += new System.EventHandler(this.btnAsymm_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1565, 808);
+            this.Controls.Add(this.btnAsymm);
             this.Controls.Add(this.btnSymmEncrypt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtKeySize);
@@ -103,6 +115,7 @@
         private System.Windows.Forms.TextBox txtKeySize;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSymmEncrypt;
+        private System.Windows.Forms.Button btnAsymm;
     }
 }
 

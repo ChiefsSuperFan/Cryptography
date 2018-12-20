@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
 
-namespace CryptoClases
+namespace CryptoClasses
 {
     public static class SymmCrypto
     {
@@ -66,104 +66,91 @@ namespace CryptoClases
             var ivStringBytes = cipherTextBytesWithSaltAndIv.Skip(KEY_SIZE / 8).Take(KEY_SIZE / 8).ToArray();
             // Get the actual cipher text bytes by removing the first 64 bytes from the cipherText string.
             var cipherTextBytes = cipherTextBytesWithSaltAndIv.Skip((KEY_SIZE / 8) * 2).Take(cipherTextBytesWithSaltAndIv.Length - ((KEY_SIZE / 8) * 2)).ToArray();
-
-            using (var password = new Rfc2898DeriveBytes(PrivateKey, saltStringBytes, DERIVATION_ITERATIONS))
+                       
+            try
             {
-                var keyBytes = password.GetBytes(KEY_SIZE / 8);
-                using (var symmetricKey = new RijndaelManaged())
+                using (var password = new Rfc2898DeriveBytes(PrivateKey, saltStringBytes, DERIVATION_ITERATIONS))
                 {
-                    symmetricKey.BlockSize = 256;
-                    symmetricKey.Mode = CipherMode.CBC;
-                    symmetricKey.Padding = PaddingMode.PKCS7;
-                    using (var decryptor = symmetricKey.CreateDecryptor(keyBytes, ivStringBytes))
+                    var keyBytes = password.GetBytes(KEY_SIZE / 8);
+                    using (var symmetricKey = new RijndaelManaged())
                     {
-                        using (var memoryStream = new MemoryStream(cipherTextBytes))
+                        symmetricKey.BlockSize = 256;
+                        symmetricKey.Mode = CipherMode.CBC;
+                        symmetricKey.Padding = PaddingMode.PKCS7;
+                        using (var decryptor = symmetricKey.CreateDecryptor(keyBytes, ivStringBytes))
                         {
-                            using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+                            using (var memoryStream = new MemoryStream(cipherTextBytes))
                             {
-                                var plainTextBytes = new byte[cipherTextBytes.Length];
-                                var decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
+                                using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+                                {
+                                    var plainTextBytes = new byte[cipherTextBytes.Length];
+                                    var decryptedByteCount = cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length);
 
-                                return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
+                                    return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
+                                }
                             }
                         }
                     }
                 }
             }
+            catch
+            {
+                return "";
+            }
+
         }
 
        
-        public static string EncryptFile(string SourceFileURL, string OutFileURL, string RandomKey)
-
+        public static bool EncryptFile(string SourceFileURL, string OutFileURL, string RandomKey)
         {
-
-
             //generate random salt
             byte[] salt = GenerateRandomSalt();
-
-
-
             string encryptedFile = OutFileURL;
 
-
-            //create output file name
-            FileStream fsCrypt = new FileStream(encryptedFile, FileMode.Create);
-
-            //convert password string to byte arrray
             byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(RandomKey);
 
             //Set Rijndael symmetric encryption algorithm
-            RijndaelManaged AES = new RijndaelManaged();
-            AES.KeySize = 256;
-            AES.BlockSize = 128;
-            AES.Padding = PaddingMode.PKCS7;
-
-            //http://stackoverflow.com/questions/2659214/why-do-i-need-to-use-the-rfc2898derivebytes-class-in-net-instead-of-directly
-            //"What it does is repeatedly hash the user password along with the salt." High iteration counts.
-            var key = new Rfc2898DeriveBytes(passwordBytes, salt, 50000);
-            AES.Key = key.GetBytes(AES.KeySize / 8);
-            AES.IV = key.GetBytes(AES.BlockSize / 8);
-
-            //Cipher modes: http://security.stackexchange.com/questions/52665/which-is-the-best-cipher-mode-and-padding-mode-for-aes-encryption
-            AES.Mode = CipherMode.CFB;
-
-            //write salt to the begining of the output file, so in this case can be random every time
-            fsCrypt.Write(salt, 0, salt.Length);
-
-            CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateEncryptor(), CryptoStreamMode.Write);
-
-            //FileStream fsIn = new FileStream(inputFile, FileMode.Open);
-            FileStream fsIn = new FileStream(SourceFileURL, FileMode.Open);
-
-
-            //create a buffer (1mb) so only this amount will allocate in the memory and not the whole file
-            byte[] buffer = new byte[1048576];
-            int read;
-
-            try
+            using (RijndaelManaged AES = new RijndaelManaged())
             {
-                while ((read = fsIn.Read(buffer, 0, buffer.Length)) > 0)
+
+                AES.KeySize = KEY_SIZE;
+                AES.BlockSize = 128;
+                AES.Padding = PaddingMode.PKCS7;
+
+                //http://stackoverflow.com/questions/2659214/why-do-i-need-to-use-the-rfc2898derivebytes-class-in-net-instead-of-directly
+                //"What it does is repeatedly hash the user password along with the salt." High iteration counts.
+                var key = new Rfc2898DeriveBytes(passwordBytes, salt, DERIVATION_ITERATIONS);
+                AES.Key = key.GetBytes(AES.KeySize / 8);
+                AES.IV = key.GetBytes(AES.BlockSize / 8);
+
+                //Cipher modes: http://security.stackexchange.com/questions/52665/which-is-the-best-cipher-mode-and-padding-mode-for-aes-encryption
+                AES.Mode = CipherMode.CFB;
+                using (FileStream fsCrypt = new FileStream(encryptedFile, FileMode.Create))
                 {
-                    //Application.DoEvents(); 
-                    cs.Write(buffer, 0, read);
+                    //write salt to the begining of the output file, so in this case can be random every time
+                    fsCrypt.Write(salt, 0, salt.Length);
+                    using (CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        using (FileStream fsIn = new FileStream(SourceFileURL, FileMode.Open))
+                        {
+                            byte[] buffer = new byte[1048576];
+                            int read;
+                            while ((read = fsIn.Read(buffer, 0, buffer.Length)) > 0)
+                            {
+                                //Application.DoEvents(); 
+                                cs.Write(buffer, 0, read);
+                            }
+
+                            //close up
+                            fsIn.Close();
+                            return true;
+                        }
+                    }                     
+                                        
                 }
-
-                //close up
-                fsIn.Close();
-                return encryptedFile;
-
             }
-            catch (Exception ex)
-            {
-                //Debug.WriteLine("Error: " + ex.Message);
-                return encryptedFile;
-            }
-            finally
-            {
-                cs.Close();
-                fsCrypt.Close();
 
-            }
+            
         }
 
         public static bool DecryptFile(string SourceFileURL, string OurFileURL, string RandomKey)
@@ -180,16 +167,15 @@ namespace CryptoClases
                     fsCrypt.Read(salt, 0, salt.Length);
                     using (RijndaelManaged AES = new RijndaelManaged())
                     {
-                        AES.KeySize = 256;
+                        AES.KeySize = KEY_SIZE;
                         AES.BlockSize = 128;
-                        var key = new Rfc2898DeriveBytes(passwordBytes, salt, 50000);
+                        var key = new Rfc2898DeriveBytes(passwordBytes, salt, DERIVATION_ITERATIONS);
                         AES.Key = key.GetBytes(AES.KeySize / 8);
                         AES.IV = key.GetBytes(AES.BlockSize / 8);
                         AES.Padding = PaddingMode.PKCS7;
                         AES.Mode = CipherMode.CFB;
                         using (CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateDecryptor(), CryptoStreamMode.Read))
                         {
-
                             using (FileStream fsOut = new FileStream(decryptedFile, FileMode.Create))
                             {
 
