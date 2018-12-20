@@ -116,13 +116,18 @@ namespace Cryptography.Algorithms
                 AES.BlockSize = 128;
                 AES.Padding = PaddingMode.PKCS7;
 
-                //http://stackoverflow.com/questions/2659214/why-do-i-need-to-use-the-rfc2898derivebytes-class-in-net-instead-of-directly
-                //"What it does is repeatedly hash the user password along with the salt." High iteration counts.
+                //technically, we do not use the randomly generated password for the encryption key
+                //Rfc2898DeriveBytes is an implementation of PBKDF or Password-Based Key Derivation Function 2
+                //this has a slight impact on the system encryption code, but a significant impact on 
+                //someone trying a brute force attack!  This function provides the actual "key" used to encrypt the file
+                //it is never recommend to use the randomly generate key as the actual encryption key.  
+
                 var key = new Rfc2898DeriveBytes(passwordBytes, salt, DERIVATION_ITERATIONS);
                 AES.Key = key.GetBytes(AES.KeySize / 8);
                 AES.IV = key.GetBytes(AES.BlockSize / 8);
 
                 //Cipher modes: http://security.stackexchange.com/questions/52665/which-is-the-best-cipher-mode-and-padding-mode-for-aes-encryption
+
                 AES.Mode = CipherMode.CFB;
                 using (FileStream fsCrypt = new FileStream(encryptedFile, FileMode.Create))
                 {

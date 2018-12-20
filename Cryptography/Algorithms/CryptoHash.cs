@@ -11,15 +11,7 @@ namespace Cryptography.Algorithms
     public static class CryptoHash
     {
 
-        //public static byte[] GetByteArray256Hash(byte[] InputValue)
-        //{
-        //    //byte[] stringBytes = Encoding.ASCII.GetBytes(InputValue);
 
-        //    SHA256Managed sha = new SHA256Managed();
-        //    byte[] checksum = sha.ComputeHash(InputValue);
-        //    return checksum;
-
-        //}
 
         public static byte[] GetSha256ByteArrayHash(byte[] InputValue)
         {
