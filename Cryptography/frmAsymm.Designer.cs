@@ -38,6 +38,10 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnSpeedTest = new System.Windows.Forms.Button();
             this.txtTime = new System.Windows.Forms.TextBox();
+            this.txtLen = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtPublic
@@ -100,15 +104,14 @@
             // 
             // txtPassword
             // 
-            this.txtPassword.Enabled = false;
-            this.txtPassword.Location = new System.Drawing.Point(164, 1040);
+            this.txtPassword.Location = new System.Drawing.Point(395, 931);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(823, 38);
+            this.txtPassword.Size = new System.Drawing.Size(1459, 38);
             this.txtPassword.TabIndex = 8;
             // 
             // btnSpeedTest
             // 
-            this.btnSpeedTest.Location = new System.Drawing.Point(184, 1153);
+            this.btnSpeedTest.Location = new System.Drawing.Point(327, 1122);
             this.btnSpeedTest.Name = "btnSpeedTest";
             this.btnSpeedTest.Size = new System.Drawing.Size(371, 51);
             this.btnSpeedTest.TabIndex = 9;
@@ -118,16 +121,54 @@
             // 
             // txtTime
             // 
-            this.txtTime.Location = new System.Drawing.Point(813, 1165);
+            this.txtTime.Location = new System.Drawing.Point(1364, 1120);
             this.txtTime.Name = "txtTime";
             this.txtTime.Size = new System.Drawing.Size(246, 38);
             this.txtTime.TabIndex = 10;
+            // 
+            // txtLen
+            // 
+            this.txtLen.Location = new System.Drawing.Point(1386, 1208);
+            this.txtLen.Name = "txtLen";
+            this.txtLen.Size = new System.Drawing.Size(224, 38);
+            this.txtLen.TabIndex = 11;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1029, 1132);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(264, 32);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Elapsed Time (MS):";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(997, 1214);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(308, 32);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Encrypted Text Length:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(197, 931);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(150, 32);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Plain Text:";
             // 
             // frmAsymm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2439, 1400);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtLen);
             this.Controls.Add(this.txtTime);
             this.Controls.Add(this.btnSpeedTest);
             this.Controls.Add(this.txtPassword);
@@ -158,5 +199,9 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnSpeedTest;
         private System.Windows.Forms.TextBox txtTime;
+        private System.Windows.Forms.TextBox txtLen;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

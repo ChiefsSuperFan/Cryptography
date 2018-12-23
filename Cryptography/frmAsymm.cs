@@ -48,11 +48,12 @@ namespace Cryptography
             try
             {
                 DateTime t1 = DateTime.Now;
-
+                string encrypted = "";
+                string decrypted = "";
                 for(int i=0;i<100;i++)
                 {
-                    string encrypted = AsymmetricEncryption.EncryptText(txtPassword.Text, txtPublic.Text);
-                    string decrypted = AsymmetricEncryption.DecryptText(encrypted, txtPrivate.Text);
+                    encrypted = AsymmetricEncryption.EncryptText(txtPassword.Text, txtPublic.Text);
+                    decrypted = AsymmetricEncryption.DecryptText(encrypted, txtPrivate.Text);
 
                 }
 
@@ -62,6 +63,7 @@ namespace Cryptography
 
                 var elapsedMS = timeSpan.TotalMilliseconds;
                 txtTime.Text = elapsedMS.ToString();
+                txtLen.Text = encrypted.Length.ToString();
 
 
             }catch

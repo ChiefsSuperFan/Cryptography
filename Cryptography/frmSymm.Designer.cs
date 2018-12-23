@@ -35,6 +35,8 @@
             this.btnDecrypt = new System.Windows.Forms.Button();
             this.txtEncryptedLength = new System.Windows.Forms.TextBox();
             this.txtPlainLength = new System.Windows.Forms.TextBox();
+            this.btnSpeedTest = new System.Windows.Forms.Button();
+            this.txtElapsedTime = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtEncryptionKey
@@ -43,7 +45,7 @@
             this.txtEncryptionKey.Enabled = false;
             this.txtEncryptionKey.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEncryptionKey.ForeColor = System.Drawing.Color.Black;
-            this.txtEncryptionKey.Location = new System.Drawing.Point(176, 84);
+            this.txtEncryptionKey.Location = new System.Drawing.Point(134, 63);
             this.txtEncryptionKey.Name = "txtEncryptionKey";
             this.txtEncryptionKey.Size = new System.Drawing.Size(707, 38);
             this.txtEncryptionKey.TabIndex = 0;
@@ -98,11 +100,30 @@
             this.txtPlainLength.Size = new System.Drawing.Size(100, 38);
             this.txtPlainLength.TabIndex = 6;
             // 
+            // btnSpeedTest
+            // 
+            this.btnSpeedTest.Location = new System.Drawing.Point(208, 980);
+            this.btnSpeedTest.Name = "btnSpeedTest";
+            this.btnSpeedTest.Size = new System.Drawing.Size(200, 66);
+            this.btnSpeedTest.TabIndex = 7;
+            this.btnSpeedTest.Text = "Speed Test";
+            this.btnSpeedTest.UseVisualStyleBackColor = true;
+            this.btnSpeedTest.Click += new System.EventHandler(this.btnSpeedTest_Click);
+            // 
+            // txtElapsedTime
+            // 
+            this.txtElapsedTime.Location = new System.Drawing.Point(568, 995);
+            this.txtElapsedTime.Name = "txtElapsedTime";
+            this.txtElapsedTime.Size = new System.Drawing.Size(299, 38);
+            this.txtElapsedTime.TabIndex = 8;
+            // 
             // frmSymm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1696, 983);
+            this.ClientSize = new System.Drawing.Size(1696, 1124);
+            this.Controls.Add(this.txtElapsedTime);
+            this.Controls.Add(this.btnSpeedTest);
             this.Controls.Add(this.txtPlainLength);
             this.Controls.Add(this.txtEncryptedLength);
             this.Controls.Add(this.btnDecrypt);
@@ -127,5 +148,7 @@
         private System.Windows.Forms.Button btnDecrypt;
         private System.Windows.Forms.TextBox txtEncryptedLength;
         private System.Windows.Forms.TextBox txtPlainLength;
+        private System.Windows.Forms.Button btnSpeedTest;
+        private System.Windows.Forms.TextBox txtElapsedTime;
     }
 }

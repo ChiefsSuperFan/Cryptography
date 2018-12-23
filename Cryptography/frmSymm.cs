@@ -71,5 +71,27 @@ namespace Cryptography
 
 
         }
+
+        private void btnSpeedTest_Click(object sender, EventArgs e)
+        {
+            if(txtEncrypted.Text.Length>0)
+            {
+                DateTime t1 = DateTime.Now;
+                //string plain = txtPlain.Text;
+
+                for(int i=0;i<200;i++)
+                {
+                    //string encrypt = SymmCrypto.Encrypt(plain, txtEncryptionKey.Text);
+                    string decrypt = SymmCrypto.Decrypt(txtEncrypted.Text, txtEncryptionKey.Text);
+
+                }
+
+                DateTime t2 = DateTime.Now;
+                TimeSpan time = t2.Subtract(t1);
+                txtElapsedTime.Text = time.TotalMilliseconds.ToString();
+
+
+            }
+        }
     }
 }

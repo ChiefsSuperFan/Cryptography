@@ -82,5 +82,13 @@ namespace Cryptography
             merkleRoot.Show();
 
         }
+
+        private void btnFileEncrypt_Click(object sender, EventArgs e)
+        {
+            frmSymmFiles symmFiles = new frmSymmFiles();
+            symmFiles.LoadKey(txtRandomKey.Text);
+            symmFiles.Show();
+
+        }
     }
 }

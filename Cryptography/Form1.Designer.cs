@@ -36,6 +36,7 @@
             this.btnAsymm = new System.Windows.Forms.Button();
             this.btnHashCompare = new System.Windows.Forms.Button();
             this.btnMerkle = new System.Windows.Forms.Button();
+            this.btnFileEncrypt = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGenerateKey
@@ -112,11 +113,22 @@
             this.btnMerkle.UseVisualStyleBackColor = true;
             this.btnMerkle.Click += new System.EventHandler(this.btnMerkle_Click);
             // 
+            // btnFileEncrypt
+            // 
+            this.btnFileEncrypt.Location = new System.Drawing.Point(87, 616);
+            this.btnFileEncrypt.Name = "btnFileEncrypt";
+            this.btnFileEncrypt.Size = new System.Drawing.Size(329, 54);
+            this.btnFileEncrypt.TabIndex = 8;
+            this.btnFileEncrypt.Text = "File Encryption";
+            this.btnFileEncrypt.UseVisualStyleBackColor = true;
+            this.btnFileEncrypt.Click += new System.EventHandler(this.btnFileEncrypt_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1565, 808);
+            this.Controls.Add(this.btnFileEncrypt);
             this.Controls.Add(this.btnMerkle);
             this.Controls.Add(this.btnHashCompare);
             this.Controls.Add(this.btnAsymm);
@@ -142,6 +154,7 @@
         private System.Windows.Forms.Button btnAsymm;
         private System.Windows.Forms.Button btnHashCompare;
         private System.Windows.Forms.Button btnMerkle;
+        private System.Windows.Forms.Button btnFileEncrypt;
     }
 }
 
