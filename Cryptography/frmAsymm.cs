@@ -65,6 +65,8 @@ namespace Cryptography
                 txtTime.Text = elapsedMS.ToString();
                 txtLen.Text = encrypted.Length.ToString();
 
+                MessageBox.Show(elapsedMS.ToString());
+
 
             }catch
             {
