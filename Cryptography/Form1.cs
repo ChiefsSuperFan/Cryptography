@@ -91,5 +91,11 @@ namespace Cryptography
             symmFiles.Show();
 
         }
+
+        private void btnRIPEMD_Click(object sender, EventArgs e)
+        {
+            frmRIPEMDHash frmRIPEMDHash = new frmRIPEMDHash();
+            frmRIPEMDHash.Show();
+        }
     }
 }

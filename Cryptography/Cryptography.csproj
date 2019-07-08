@@ -75,6 +75,12 @@
     <Compile Include="frmMerkleRoot.Designer.cs">
       <DependentUpon>frmMerkleRoot.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRIPEMDHash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRIPEMDHash.Designer.cs">
+      <DependentUpon>frmRIPEMDHash.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSymm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMerkleRoot.resx">
       <DependentUpon>frmMerkleRoot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRIPEMDHash.resx">
+      <DependentUpon>frmRIPEMDHash.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSymm.resx">
       <DependentUpon>frmSymm.cs</DependentUpon>
