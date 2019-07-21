@@ -12,7 +12,7 @@ namespace Cryptography.Algorithms
         private static bool _optimalAsymmetricEncryptionPadding = false;
 
         //The NIST recommends 2048-bit keys for RSA. 
-        private const int KEY_SIZE = 3072;
+        private const int KEY_SIZE = 2048;
 
         public static void GenerateKeys(out string publicKey, out string publicAndPrivateKey)
         {

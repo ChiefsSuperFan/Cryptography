@@ -97,5 +97,12 @@ namespace Cryptography
             frmRIPEMDHash frmRIPEMDHash = new frmRIPEMDHash();
             frmRIPEMDHash.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmAES aesExample = new frmAES();
+            aesExample.Show();
+     
+        }
     }
 }

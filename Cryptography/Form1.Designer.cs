@@ -38,12 +38,13 @@
             this.btnMerkle = new System.Windows.Forms.Button();
             this.btnFileEncrypt = new System.Windows.Forms.Button();
             this.btnRIPEMD = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGenerateKey
             // 
             this.btnGenerateKey.Location = new System.Drawing.Point(31, 34);
-            this.btnGenerateKey.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGenerateKey.Margin = new System.Windows.Forms.Padding(2);
             this.btnGenerateKey.Name = "btnGenerateKey";
             this.btnGenerateKey.Size = new System.Drawing.Size(156, 25);
             this.btnGenerateKey.TabIndex = 0;
@@ -54,7 +55,7 @@
             // txtRandomKey
             // 
             this.txtRandomKey.Location = new System.Drawing.Point(31, 107);
-            this.txtRandomKey.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRandomKey.Margin = new System.Windows.Forms.Padding(2);
             this.txtRandomKey.Name = "txtRandomKey";
             this.txtRandomKey.Size = new System.Drawing.Size(268, 22);
             this.txtRandomKey.TabIndex = 1;
@@ -62,7 +63,7 @@
             // txtKeySize
             // 
             this.txtKeySize.Location = new System.Drawing.Point(310, 37);
-            this.txtKeySize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtKeySize.Margin = new System.Windows.Forms.Padding(2);
             this.txtKeySize.Name = "txtKeySize";
             this.txtKeySize.Size = new System.Drawing.Size(52, 22);
             this.txtKeySize.TabIndex = 2;
@@ -81,7 +82,7 @@
             // btnSymmEncrypt
             // 
             this.btnSymmEncrypt.Location = new System.Drawing.Point(38, 176);
-            this.btnSymmEncrypt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSymmEncrypt.Margin = new System.Windows.Forms.Padding(2);
             this.btnSymmEncrypt.Name = "btnSymmEncrypt";
             this.btnSymmEncrypt.Size = new System.Drawing.Size(180, 33);
             this.btnSymmEncrypt.TabIndex = 4;
@@ -92,7 +93,7 @@
             // btnAsymm
             // 
             this.btnAsymm.Location = new System.Drawing.Point(44, 250);
-            this.btnAsymm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAsymm.Margin = new System.Windows.Forms.Padding(2);
             this.btnAsymm.Name = "btnAsymm";
             this.btnAsymm.Size = new System.Drawing.Size(174, 30);
             this.btnAsymm.TabIndex = 5;
@@ -103,7 +104,7 @@
             // btnHashCompare
             // 
             this.btnHashCompare.Location = new System.Drawing.Point(346, 176);
-            this.btnHashCompare.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnHashCompare.Margin = new System.Windows.Forms.Padding(2);
             this.btnHashCompare.Name = "btnHashCompare";
             this.btnHashCompare.Size = new System.Drawing.Size(156, 33);
             this.btnHashCompare.TabIndex = 6;
@@ -114,7 +115,7 @@
             // btnMerkle
             // 
             this.btnMerkle.Location = new System.Drawing.Point(346, 250);
-            this.btnMerkle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMerkle.Margin = new System.Windows.Forms.Padding(2);
             this.btnMerkle.Name = "btnMerkle";
             this.btnMerkle.Size = new System.Drawing.Size(179, 36);
             this.btnMerkle.TabIndex = 7;
@@ -125,7 +126,7 @@
             // btnFileEncrypt
             // 
             this.btnFileEncrypt.Location = new System.Drawing.Point(44, 318);
-            this.btnFileEncrypt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFileEncrypt.Margin = new System.Windows.Forms.Padding(2);
             this.btnFileEncrypt.Name = "btnFileEncrypt";
             this.btnFileEncrypt.Size = new System.Drawing.Size(164, 28);
             this.btnFileEncrypt.TabIndex = 8;
@@ -143,11 +144,22 @@
             this.btnRIPEMD.UseVisualStyleBackColor = true;
             this.btnRIPEMD.Click += new System.EventHandler(this.btnRIPEMD_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(613, 254);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(782, 417);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnRIPEMD);
             this.Controls.Add(this.btnFileEncrypt);
             this.Controls.Add(this.btnMerkle);
@@ -158,7 +170,7 @@
             this.Controls.Add(this.txtKeySize);
             this.Controls.Add(this.txtRandomKey);
             this.Controls.Add(this.btnGenerateKey);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -178,6 +190,7 @@
         private System.Windows.Forms.Button btnMerkle;
         private System.Windows.Forms.Button btnFileEncrypt;
         private System.Windows.Forms.Button btnRIPEMD;
+        private System.Windows.Forms.Button button1;
     }
 }
 
